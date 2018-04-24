@@ -2,7 +2,8 @@
 // passKey: "7C6C9B0A-F2FA-4F74-8568-3D2858C136ED",
 // Lines: "1",
 // SelectDate: "20/04/2017"
-
+let averageTimes = [];
+let timeRoutePromises = [];
 document.addEventListener(
   "DOMContentLoaded",
   () => {
@@ -90,6 +91,27 @@ const getListLines = (url, params) => {
               // console.log(startEndObj[0])
 
               initMap(startEndObj[0], startEndObj[1], selectedLine);
+
+              let time = convertToSec(new Date(), 5);
+              console.log(time);
+              time.forEach(e =>
+                timeRoutePromises.push(
+                  calculateTimeRoute(
+                    startEndObj[0],
+                    startEndObj[1],
+                    selectedLine,
+                    e
+                  )
+                )
+              );
+              console.log(timeRoutePromises);
+              Promise.all(timeRoutePromises).then(timeInfo => {
+                console.log(timeInfo);
+                let total = averageTimes.reduce((total, num) => {
+                  return total + num;
+                });
+                console.log(total / averageTimes.length);
+              });
             });
 
             infoLines.appendChild(showTime);
@@ -172,7 +194,6 @@ const calculateAndDisplayRoute = (
     {
       origin: pointA,
       destination: pointB,
-
       travelMode: "TRANSIT",
       transitOptions: {
         departureTime: new Date(),
@@ -205,8 +226,96 @@ const calculateAndDisplayRoute = (
         });
         //    directionsDisplay.setDirections(response);
       } else {
-        window.alert("Directions request failed due to " + status);
+        //   window.alert("Directions request failed due to " + status);
       }
     }
   );
+};
+
+const calculateTimeRoute = (start, end, line, time) => {
+  console.log(time)
+  return new Promise((resolve, reject) => {
+    (directionsService = new google.maps.DirectionsService()),
+      directionsService.route(
+        {
+          origin: `${start.lat},${start.lng}`,
+          destination: `${end.lat},${end.lng}`,
+          travelMode: "TRANSIT",
+          transitOptions: {
+            departureTime: new Date(time),
+            modes: ["BUS"]
+          },
+          provideRouteAlternatives: true
+        },
+        (response, status) => {
+          if (status == google.maps.DirectionsStatus.OK) {
+            for (i = 0; i < response.routes.length; i++) {
+              e = response.routes[i];
+              for (j = 0; j < e.legs[0].steps.length; j++) {
+                a = e.legs[0].steps[j];
+                if (a.travel_mode == "TRANSIT") {
+                  if (a.transit.line.short_name === line) {
+                    console.log(
+                      `media - DURACION ESTIMADA: ${a.duration.text}`
+                    );
+                    console.log(
+                      `media - FOUND LINEA: ${a.transit.line.short_name}`
+                    );
+                    averageTimes.push(parseInt(convertToMin(a.duration.text)));
+                    resolve(response);
+                    // } else {
+                    //   reject()
+                  }
+                }
+              }
+            }
+
+            // response.routes.forEach((e, i) => {
+            //   e.legs[0].steps.forEach(a => {
+            //     if (a.travel_mode == "TRANSIT") {
+            //       if (a.transit.line.short_name === line) {
+            //         console.log(`DURACION ESTIMADA: ${a.duration.text}`);
+            //         console.log(`FOUND LINEA: ${a.transit.line.short_name}`);
+            //         duration += a.duration.text.split(" ")[0]
+
+            //       }
+            //       //  console.log(a.transit.line.short_name);
+            //     }
+            //     //console.log(a.steps);
+            //   });
+            // });
+            //    directionsDisplay.setDirections(response);
+          } else {
+            window.alert("Directions request failed due to " + status);
+          }
+        }
+      );
+  });
+};
+
+const convertToMin = time => {
+  //time tiene este formato => 1h 0min // 53min
+  let separate = time.split(" ");
+  let total = 0;
+  if (time.indexOf("h") != -1) {
+    total = parseInt(time[0]) * 60 + parseInt(separate[1].split("min")[0]);
+    return total;
+  } else {
+    //son min
+    return time.split(" ")[0];
+  }
+};
+
+const convertToSec = (date, num) => {
+  //recibe la fecha en formato => 2018-04-24T17:07:27.605Z
+
+  let dateInSec = Math.round(new Date(date).getTime());
+  let dayInSec = 60 * 60 * 24;
+  let datesInSec = [];
+  // let UMT = 60*60*2 //2h
+  let delay = 10000;
+  for (i = 0; i < num; i++) {
+    datesInSec.push(delay + dateInSec + dayInSec * i);
+  }
+  return datesInSec;
 };
