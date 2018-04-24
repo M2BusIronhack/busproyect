@@ -86,7 +86,10 @@ const getListLines = (url, params) => {
             let showTime = document.createElement("button");
             showTime.innerHTML = "¿hay tráfico?";
             showTime.addEventListener("click", e => {
-              getStopSelectedInfo(selectedLine);
+              let startEndObj = getStopSelectedInfo(selectedLine);
+              // console.log(startEndObj[0])
+
+              initMap(startEndObj[0], startEndObj[1], selectedLine);
             });
 
             infoLines.appendChild(showTime);
@@ -117,18 +120,93 @@ const getStopSelectedInfo = selectedLine => {
   const startPointObj = {
     node: stopStartSelected.value,
     line: selectedLine,
-    long: stopStartSelected.getAttribute("lng"),
+    lng: stopStartSelected.getAttribute("lng"),
     lat: stopStartSelected.getAttribute("lat")
   };
- // console.log(startPointObj);
+  console.log(startPointObj);
 
   let endPoint = document.getElementById("end");
   let stopEndSelected = endPoint.options[endPoint.selectedIndex];
   const endPointObj = {
     node: stopEndSelected.value,
     line: selectedLine,
-    long: stopEndSelected.getAttribute("lng"),
+    lng: stopEndSelected.getAttribute("lng"),
     lat: stopEndSelected.getAttribute("lat")
   };
-  //console.log(endPointObj);
+
+  return [startPointObj, endPointObj];
+};
+
+const initMap = (start, end, line) => {
+  var pointA = new google.maps.LatLng(start.lat, start.lng),
+    pointB = new google.maps.LatLng(end.lat, end.lng),
+    myOptions = {
+      zoom: 7,
+      center: pointA
+    },
+    map = new google.maps.Map(document.getElementById("map"), myOptions),
+    // Instantiate a directions service.
+    directionsService = new google.maps.DirectionsService(),
+    directionsDisplay = new google.maps.DirectionsRenderer({
+      map: map
+    });
+
+  // get route from A to B
+  calculateAndDisplayRoute(
+    directionsService,
+    directionsDisplay,
+    pointA,
+    pointB,
+    line
+  );
+};
+
+const calculateAndDisplayRoute = (
+  directionsService,
+  directionsDisplay,
+  pointA,
+  pointB,
+  line
+) => {
+  directionsService.route(
+    {
+      origin: pointA,
+      destination: pointB,
+
+      travelMode: "TRANSIT",
+      transitOptions: {
+        departureTime: new Date(),
+        modes: ["BUS"]
+      },
+      provideRouteAlternatives: true
+    },
+    (response, status) => {
+      if (status == google.maps.DirectionsStatus.OK) {
+        console.log(response);
+        response.routes.forEach((e, i) => {
+          e.legs[0].steps.forEach(a => {
+            if (a.travel_mode == "TRANSIT") {
+              if (a.transit.line.short_name === line) {
+                console.log(`DURACION ESTIMADA: ${a.duration.text}`);
+                console.log(`FOUND LINEA: ${a.transit.line.short_name}`);
+
+                let mapa = document.getElementById("map");
+                mapa.style.display = "block";
+
+                response.routes = [response.routes[i]];
+
+                directionsDisplay.setDirections(response);
+              }
+              //  console.log(a.transit.line.short_name);
+            }
+
+            //console.log(a.steps);
+          });
+        });
+        //    directionsDisplay.setDirections(response);
+      } else {
+        window.alert("Directions request failed due to " + status);
+      }
+    }
+  );
 };
