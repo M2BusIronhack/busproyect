@@ -5,6 +5,9 @@ const userSchema = new Schema({
   username: {type: String},
   email: {type: String},
   password: {type: String}, 
+  img: { type: String }, 
+  commentBody: { type: Schema.Types.ObjectId, ref: 'Comment' }
+
 }, {
   timestamps: {
     createdAt: 'created_at',

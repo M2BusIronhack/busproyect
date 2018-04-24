@@ -1,0 +1,26 @@
+<h1>Your profile</h1>
+
+{{#with user}}
+    <p>Name:{{this.username}}</p>  
+    <div>
+        <p>Your image</p>
+        <img src="{{this.img}}" alt="userProfile" width=200>
+    </div>  
+
+{{/with}}
+
+{{#with user}}
+    <div> Comentarios
+        <ul>
+            <li>{{this.commentBody}}</li>
+        </ul>   
+      </div>   
+{{/with}}
+
+   
+<a href="/profile/{{user._id}}/edit">Edit Profile</a>
+
+
+
+
+

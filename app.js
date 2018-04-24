@@ -8,7 +8,6 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
-
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
@@ -76,13 +75,22 @@ app.use(
 );
 app.use(flash());
 
-
 require("./passport")(app);
+
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+})
 
 const index = require("./routes/index");
 app.use("/", index);
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
+
+const profileRoute = require("./routes/profile");
+app.use("/profile", profileRoute);
+
+
 
 module.exports = app;
