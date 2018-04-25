@@ -29,9 +29,9 @@ const getListLines = (url, params) => {
     })
     .then(a => {
       let infoLines = document.getElementById("info-lines");
-      let select = document.createElement("select");
-      select.id = "lines";
-      infoLines.appendChild(select);
+      let select = document.getElementById("lines");
+      /* select.id = "lines";
+      infoLines.appendChild(select); */
 
       a.data.resultValues.forEach(e => {
         let info = `${e.label}: ${e.nameA}-${e.nameB}`;
@@ -41,7 +41,7 @@ const getListLines = (url, params) => {
         select.appendChild(option);
       });
 
-      let showStops = document.createElement("button");
+      let showStops = document.getElementById("ver-paradas");
       showStops.addEventListener("click", e => {
         // const datos = getParadas()
         // drawParadas(datos)
@@ -67,7 +67,7 @@ const getListLines = (url, params) => {
             //pero con las paradas
 
             let infoLines = document.getElementById("line-stop");
-            let select = document.createElement("select");
+            //let select = document.createElement("select");
             select.id = "start";
             infoLines.appendChild(select);
 
@@ -94,8 +94,8 @@ const getListLines = (url, params) => {
             // console.log(a);
           });
       });
-      showStops.innerHTML = "ver paradas";
-      infoLines.appendChild(showStops);
+      //showStops.innerHTML = "ver paradas";
+      //infoLines.appendChild(showStops);
     })
     .catch(e => console.log(e));
 };

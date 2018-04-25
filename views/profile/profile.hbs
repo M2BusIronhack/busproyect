@@ -1,26 +1,41 @@
-<h1>Your profile</h1>
+{{!-- <h1>Your profile</h1> --}}
 
-{{#with user}}
+{{!-- {{#with user}}
     <p>Name:{{this.username}}</p>  
     <div>
         <p>Your image</p>
         <img src="{{this.img}}" alt="userProfile" width=200>
     </div>  
 
+{{/with}} --}}
+
+
+{{#with user}}
+<figure class="snip1578">
+    <img src="{{this.img}}" alt="profile-sample6" />
+    <figcaption>
+        <h3>{{this.username}}</h3>
+        <div class="icons">
+            <a href="#">
+                <i class="ion-social-twitter"></i>
+            </a>
+            <a href="#">
+                <i class="ion-social-instagram-outline"></i>
+            </a>
+            <a href="#">
+                <i class="ion-social-github"></i>
+            </a>
+        </div>
+    </figcaption>
+</figure>
 {{/with}}
 
 {{#with user}}
-    <div> Comentarios
-        <ul>
-            <li>{{this.commentBody}}</li>
-        </ul>   
-      </div>   
+<div> Comentarios
+    <ul>
+        <li>{{this.commentBody}}</li>
+    </ul>
+</div>
 {{/with}}
 
-   
 <a href="/profile/{{user._id}}/edit">Edit Profile</a>
-
-
-
-
-
