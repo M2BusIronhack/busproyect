@@ -17,18 +17,18 @@
       <div class="col-sm-12">
         
           <div class="title-container text-center">
-            <h1>{{title}}</h1>
-            <h2>Loren </h2>
+            
+            <h3>FIND YOUR LINE BUS</h3>
           </div>
           <div class="col-sm-6">
             <div id="info-lines">
               <div class="input-group">
-                <select class="custom-select" id="lines"></select>
+                <select class="custom-select" id="lines" onmousedown="if(this.options.length>12){this.size=12;}" onchange='this.size=0;' onblur="this.size=0;"></select>
                 <div class="input-group-append">
-                  <button id="show-stops" class="btn btn-outline-secondary" type="button">Ver</button>
+                  <button id="show-stops" class="btn btn-light" type="button">Ver</button>
                 </div>
                    <div class="input-group-append">
-                <a id="see-comments" class="btn btn-outline-secondary" type="">See Comments</a>
+                <a id="see-comments" class="btn btn-light" type="">See Comments</a>
               </div>
               </div>
            

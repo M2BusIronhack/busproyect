@@ -1,15 +1,15 @@
 <form action="/profile/{{user._id}}/edit" method="post" enctype="multipart/form-data">
 
     <label for="">Name:</label>
-    <input type="text" name="username" value="{{user.username}}">
+    <input type="text" name="username" placeholder="" value="{{user.username}}">
 
+  
     <label for=" ">Email:</label>
     <input type="text" name="email" value="{{user.email}}">
 
-    {{!-- <label for=" ">Comments:</label>
-    <input type="text" name="comments" value="{{user.commentBody}}"> --}}
+    <label for=" ">Comments:</label>
+    <input type="text" name="comments" value="{{user.commentBody}}">
 
-    <input type="text" name="name">
     <input type="file" name="photo">
     <button type="submit">EDIT</button>
 
@@ -19,3 +19,4 @@
 <br>
 
 <a href="/profile/">Back your profile</a>
+
