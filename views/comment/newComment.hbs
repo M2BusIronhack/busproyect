@@ -1,0 +1,39 @@
+<form action="/comment/new/{{selectedLine}}" method="POST" id="form-container">
+
+<h1> COMMENT FOR LINE: {{selectedLine}}</h1>
+  <label for="title">Title</label>
+
+  <input id="title" type="text" name="title" placeholder="Comment Title">
+
+  <br>
+  <br>
+
+  <textarea rows="4" cols="50" type="text" name="commentBody" placeholder="Comment"> your comment </textarea>
+  <br>
+  <br>
+
+
+  <select name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <p>Llovía?</p>
+  <input type="radio" name="rain" value="true" checked> Sí
+  <br>
+  <input type="radio" name="rain" value="false"> No
+  <br>
+
+  <input type="date" name="date">
+
+  <input> {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br>
+  <br>
+  <input type="submit" value="dejar comentario">
+
+</form>

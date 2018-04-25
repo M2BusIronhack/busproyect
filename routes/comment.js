@@ -5,10 +5,40 @@ const axios = require("axios");
 const qs = require("qs");
 const Comment = require("../models/Comment");
 
+commentRouter.get("/delete/:id", (req, res, next) => {
+  Comment.findByIdAndRemove(req.params.id)
+    .then(() => {
+      console.log("comentario borrado");
+      res.redirect("/profile");
+    })
+    .catch(err => next(err));
+});
 
-commentRouter.get("/new/:id",(req, res, next) => {
-  console.log("aaaa")
-  })
+commentRouter.get("/new/:id", (req, res, next) => {
+  let selectedLine = req.params.id;
+
+  res.render("comment/newComment", { selectedLine });
+});
+
+commentRouter.post("/new/:id", (req, res, next) => {
+  const { title, commentBody, rating, rain, date } = req.body;
+  const comment = new Comment({
+    user: req.user.id,
+    title,
+    commentBody,
+    rating,
+    rain,
+    date,
+    line: req.params.id
+  });
+  comment
+    .save()
+    .then(() => {
+      console.log("all good");
+      res.redirect(`/comment/${req.params.id}`)
+    })
+    .catch(err => next(err));
+});
 
 commentRouter.get("/:lineID", (req, res, next) => {
   let selectedLine = req.params.lineID;
@@ -29,20 +59,21 @@ commentRouter.get("/:lineID", (req, res, next) => {
         "Content-Type": "application/x-www-form-urlencoded"
       }
     })
-    .then(a => {
+    .then(infoApi => {
+      Comment.find({ line: selectedLine })
+        .then(comments => {
+          let infoLine = infoApi.data.resultValues;
+          if (comments.length === 0) {
+            res.render("line", { infoLine });
+          } else {
+            res.render("line", { comments, infoLine });
+          }
+        })
+        .catch(err => console.log(err));
 
-      // Comment.find({line: selectedLine}).then( (a) => {
-      //   console.log(a)
-        
-      // })
-
-      res.render("line", a.data.resultValues);
-   
-     // res.render("error");
+      // res.render("error");
     })
     .catch(e => console.log(e));
 });
-
-
 
 module.exports = commentRouter;

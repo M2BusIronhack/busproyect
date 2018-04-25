@@ -5,42 +5,42 @@ const User = require("../models/User");
 const Comment = require("../models/Comment");
 const uploadCloud = require("../config/cloudinary.js");
 
-// Show profile detail 
+// Show profile detail
 profileRoute.get("/", (req, res, next) => {
-    User.findById(res.locals.user._id)
-        .populate('Comment')
-        .then(user => {
-            console.log(user)
-            res.render("profile/profile", { user });
-       })
-    });
-
-// Udpate and show prolife update form 
-profileRoute.get("/:id/edit", (req, res) => {
-    // User.findById(req.params.id)
-    User.findById(res.locals.user._id)
-    
-    .then(user => {
-        res.render("profile/profile_edit", { user });
-    });
+  Comment.find({ user: res.locals.user._id }).then(comments => {
+      console.log(comments)
+    if (comments.length === 0) {
+      res.render("profile/profile");
+    } else {
+      res.render("profile/profile", { comments });
+    }
+  });
 });
 
-// Udpate profile in DB 
-profileRoute.post("/:id/edit", uploadCloud.single("photo"),(req, res) => {
-    // const { username, email, password,commentBody } = req.body;
-    // const {img} = req.file.url;
-    // let updates = { username, email, password, commentBody  };
-    // updates = {img};
-    const updates = {
-        username: req.body.username,
-        email: req.body.email,
-        commentBody: req.body.commentBody,
-        img:req.file.url
-    }
+// Udpate and show prolife update form
+profileRoute.get("/:id/edit", (req, res) => {
+  // User.findById(req.params.id)
+  User.findById(res.locals.user._id).then(user => {
+    res.render("profile/profile_edit", { user });
+  });
+});
 
-    User.findByIdAndUpdate(req.params.id, updates).then(() => {
-        res.redirect("/profile");
-    });
+// Udpate profile in DB
+profileRoute.post("/:id/edit", uploadCloud.single("photo"), (req, res) => {
+  // const { username, email, password,commentBody } = req.body;
+  // const {img} = req.file.url;
+  // let updates = { username, email, password, commentBody  };
+  // updates = {img};
+  const updates = {
+    username: req.body.username,
+    email: req.body.email,
+    // commentBody: req.body.commentBody,
+    img: req.file.url
+  };
+
+  User.findByIdAndUpdate(req.params.id, updates).then(() => {
+    res.redirect("/profile");
+  });
 });
 
 module.exports = profileRoute;
