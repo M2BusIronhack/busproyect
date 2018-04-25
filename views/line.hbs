@@ -1,24 +1,54 @@
-<h1>LINEA: {{infoLine.label}} </h1>
-{{#if hasFav}} {{else}}
-<a href="/line/fav/{{infoLine.label}}">MARCAR COMO FAVORITO</a>
-{{/if}}
+<div class="container-fluid no-pad">
+    <div class="row no-margin-row justify-content-center align-items-center hero full-screen">
 
 
-<p> {{infoLine.nameA}} - {{infoLine.nameB}} </p>
-<p>LONGITUD: {{infoLine.longitudS1}}</p>
-<p> NUM PARADAS: {{infoLine.numParadasS1}}</p>
-<br>
-<h2> COMMENTS</h2>
 
-{{#if comments}} {{#each comments}}
+        <div class="title-container text-center">
 
-<p>CONTENT: {{this.title}} </p>
-<p>{{this.commentBody}} </p>
-<br> {{/each}} {{else}}
-<p> THERE ARE NOT COMMENTS</p>
-{{/if}} {{#if user}}
+            <h3>LINEA: {{infoLine.label}} </h3>
+            <h5> {{infoLine.nameA}} - {{infoLine.nameB}} </h5>
+            <p>{{rateLineAvg}}</p>
+        </div>
 
-<a href="/comment/new/{{infoLine.label}}">DEJAR COMENTARIO</a>
-{{/if}} {{!-- el objeto que devuelve la API tiene esta pinta: { groupNumber: '110', dateFirst: '07/04/2018 ', dateEnd: '31/12/2999
+        {{#if hasFav}}
+        <div class="col-sm-12"> FAV LINE</div>
+
+        {{else}}
+        <div class="col-sm-12">
+            <a href="/line/fav/{{infoLine.label}}">MARCAR COMO FAVORITO</a>
+        </div>
+
+        {{/if}} {{#if user}}
+
+        <div class="col-sm-12">
+            <a href="/comment/new/{{infoLine.label}}">DEJAR COMENTARIO</a>
+        </div>
+        {{/if}}
+
+        <div class="col-sm-12">
+            <p>LONGITUD: {{infoLine.longitudS1}}</p>
+            <p> NUM PARADAS: {{infoLine.numParadasS1}}</p>
+            <br>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="title-container text-center">
+
+                <h5>COMMENTS</h5>
+            </div>
+        </div>
+
+        {{#if comments}} {{#each comments}}
+        <div class="col-sm-12">
+            <p>CONTENT: {{this.title}} </p>
+            <p>{{this.commentBody}} </p>
+
+            <br> {{/each}} {{else}}
+            <p> THERE ARE NOT COMMENTS</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{!-- el objeto que devuelve la API tiene esta pinta: { groupNumber: '110', dateFirst: '07/04/2018 ', dateEnd: '31/12/2999
 ', line: '001', label: '1', etiqueta: '1', nameA: 'CRISTO REY ', nameB: 'PROSPERIDAD ', longitudS1: '8795,0000', longitudS2:
 '8778,0000', numParadasS1: '28', numParadasS2: '29' } } --}}

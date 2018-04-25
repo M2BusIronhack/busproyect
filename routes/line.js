@@ -48,6 +48,15 @@ lineRoute.get("/:lineID", (req, res, next) => {
     .then(infoApi => {
       Comment.find({ line: selectedLine })
         .then(comments => {
+  
+          let rateLine=0;
+          comments.forEach((e)=> {
+           rateLine += parseInt(e.rating)
+     
+          }) 
+          
+         let rateLineAvg = rateLine/(comments.length)
+
           let hasFav = false;
           //cuando renderizas la vista de la linea & hay un usuario logeado
           //tiene que salir si esa linea es favorita o no
@@ -66,7 +75,7 @@ lineRoute.get("/:lineID", (req, res, next) => {
                 if (comments.length === 0) {
                   res.render("line", { infoLine, hasFav });
                 } else {
-                  res.render("line", { comments, infoLine, hasFav });
+                  res.render("line", { comments, infoLine, hasFav, rateLineAvg });
                 }
               });
           }

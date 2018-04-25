@@ -35,7 +35,7 @@ commentRouter.post("/new/:id", (req, res, next) => {
     .save()
     .then(() => {
       console.log("all good");
-      res.redirect(`/comment/${req.params.id}`)
+      res.redirect(`/line/${req.params.id}`)
     })
     .catch(err => next(err));
 });
