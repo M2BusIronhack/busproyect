@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const FavLineSchema = new Schema(
   {
-    user: { type: String },
-    line: [{ type: String }]
+    user: { type: Schema.Types.ObjectId, ref: "user" },
+    line: { type: String }
   },
   {
     timestamps: {
