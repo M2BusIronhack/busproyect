@@ -1,26 +1,24 @@
 <h1>LINEA: {{infoLine.label}} </h1>
+{{#if hasFav}} {{else}}
+<a href="/line/fav/{{infoLine.label}}">MARCAR COMO FAVORITO</a>
+{{/if}}
+
+
 <p> {{infoLine.nameA}} - {{infoLine.nameB}} </p>
 <p>LONGITUD: {{infoLine.longitudS1}}</p>
 <p> NUM PARADAS: {{infoLine.numParadasS1}}</p>
 <br>
 <h2> COMMENTS</h2>
 
-{{#if comments}} 
-{{#each comments}}
+{{#if comments}} {{#each comments}}
 
 <p>CONTENT: {{this.title}} </p>
 <p>{{this.commentBody}} </p>
 <br> {{/each}} {{else}}
 <p> THERE ARE NOT COMMENTS</p>
-{{/if}} 
-
-
-{{#if user}}
+{{/if}} {{#if user}}
 
 <a href="/comment/new/{{infoLine.label}}">DEJAR COMENTARIO</a>
-{{/if}} 
-
-
-{{!-- el objeto que devuelve la API tiene esta pinta: { groupNumber: '110', dateFirst: '07/04/2018 ', dateEnd: '31/12/2999
+{{/if}} {{!-- el objeto que devuelve la API tiene esta pinta: { groupNumber: '110', dateFirst: '07/04/2018 ', dateEnd: '31/12/2999
 ', line: '001', label: '1', etiqueta: '1', nameA: 'CRISTO REY ', nameB: 'PROSPERIDAD ', longitudS1: '8795,0000', longitudS2:
 '8778,0000', numParadasS1: '28', numParadasS2: '29' } } --}}

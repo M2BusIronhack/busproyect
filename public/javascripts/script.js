@@ -17,9 +17,17 @@ document.addEventListener(
     params.append("SelectDate", "20/04/2018");
 
     getListLines(api_url, params);
+    listenerLineSelected()
   },
   false
 );
+
+const listenerLineSelected = () => {
+  document.querySelector('select[id="lines"]').onchange= (e) => {
+    let linkToBack = document.getElementById("see-comments");
+    linkToBack.setAttribute("href", `line/${event.target.value}`);
+  }
+}
 
 const getListLines = (url, params) => {
   axios
@@ -33,6 +41,7 @@ const getListLines = (url, params) => {
       let selectLines = document.getElementById("lines");
 
       a.data.resultValues.forEach(e => {
+        console.log(e)
         let info = `${e.label}: ${e.nameA}-${e.nameB}`;
         let option = document.createElement("option");
         option.value = e.label;
@@ -77,10 +86,8 @@ const getListLines = (url, params) => {
 
             let showTime = document.getElementById("see-traffic");
 
-            let linkToBack = document.getElementById("see-comments");
-            console.log(linkToBack);
-            linkToBack.setAttribute("href", `comment/${selectedLine}`);
-            infoLines.appendChild(linkToBack);
+         
+          //  infoLines.appendChild(linkToBack);
 
             showTime.addEventListener("click", e => {
               let startEndObj = getStopSelectedInfo(selectedLine);

@@ -4,16 +4,27 @@ const profileRoute = express.Router();
 const User = require("../models/User");
 const Comment = require("../models/Comment");
 const uploadCloud = require("../config/cloudinary.js");
-
+const FavLine = require("../models/FavLine");
 // Show profile detail
 profileRoute.get("/", (req, res, next) => {
   Comment.find({ user: res.locals.user._id }).then(comments => {
-      console.log(comments)
-    if (comments.length === 0) {
-      res.render("profile/profile");
-    } else {
-      res.render("profile/profile", { comments });
-    }
+    let hasFav = false;
+    let favLines = [];
+    FavLine.find({ user: res.locals.user._id })
+      .then(favLinesUser => {
+        if (favLinesUser.length != 0) {
+          hasFav = true;
+          favLines = favLinesUser;
+        }
+        //   console.log(a);
+      })
+      .then(() => {
+        if (comments.length === 0) {
+          res.render("profile/profile", { favLines });
+        } else {
+          res.render("profile/profile", { comments, favLines });
+        }
+      });
   });
 });
 

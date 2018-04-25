@@ -96,6 +96,9 @@ app.use("/profile", profileRoute);
 const commentRoutes = require("./routes/comment")
 app.use("/comment", commentRoutes)
 
+const lineRoutes = require("./routes/line")
+app.use("/line", lineRoutes)
+
 
 
 module.exports = app;

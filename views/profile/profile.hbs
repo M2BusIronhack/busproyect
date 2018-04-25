@@ -30,23 +30,15 @@
             </div>
         </div>
 
- 
+{{#if favLines}} 
+<h1>LINES</h1>
+{{#each favLines}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>FAV LINES: {{this.line}} </p>
+<a href="/line/delete/{{this.line}}">DELETE</a>
+<br> {{/each}} {{else}}
+<p> THERE ARE NOT FAV LINES</p>
+{{/if}} 
 
 
 
