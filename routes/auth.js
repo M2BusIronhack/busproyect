@@ -27,7 +27,7 @@ authRoutes.get("/signup", ensureLoggedOut('/'), (req, res, next) => {
   res.render("auth/signup");
 });
 
-authRoutes.post("/signup", (req, res, next) => {
+authRoutes.post("/signup",  (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (username === "" || password === "" || email === "") {
