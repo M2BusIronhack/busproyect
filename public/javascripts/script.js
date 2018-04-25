@@ -41,6 +41,7 @@ const getListLines = (url, params) => {
       let selectLines = document.getElementById("lines");
 
       a.data.resultValues.forEach(e => {
+        console.log(e)
         let info = `${e.label}: ${e.nameA}-${e.nameB}`;
         let option = document.createElement("option");
         option.value = e.label;
