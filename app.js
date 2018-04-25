@@ -91,6 +91,7 @@ app.use("/auth", authRoutes);
 const profileRoute = require("./routes/profile");
 app.use("/profile", profileRoute);
 
-
+const commentRoutes = require("./routes/comment")
+app.use("/comment", commentRoutes)
 
 module.exports = app;
