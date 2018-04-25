@@ -11,50 +11,52 @@
 {{else}} *for debug* NO USER {{/if}} --}}
 
 
+
 <main>
   <div class="container-fluid no-pad">
     <div class="row no-margin-row justify-content-center align-items-center hero full-screen">
-      <div class="col-sm-12">
-        
-          <div class="title-container text-center">
-            
-            <h3>FIND YOUR LINE BUS</h3>
-          </div>
-          <div class="col-sm-6">
-            <div id="info-lines">
-              <div class="input-group">
-                <select class="custom-select" id="lines" onmousedown="if(this.options.length>12){this.size=12;}" onchange='this.size=0;' onblur="this.size=0;"></select>
-                <div class="input-group-append">
-                  <button id="show-stops" class="btn btn-light" type="button">Ver</button>
-                </div>
-                   <div class="input-group-append">
-                <a id="see-comments" class="btn btn-light" type="">See Comments</a>
-              </div>
-              </div>
-           
+      
+
+        <div class="title-container text-center">
+
+          <h3>BUSCA UNA LINEA</h3>
+        </div>
+        <div class="col-sm-12">
+          <div id="info-lines">
+            <div class="input-group">
+              <select class="custom-select" id="lines" onmousedown="if(this.options.length>12){this.size=12;}" onchange='this.size=0;'
+                onblur="this.size=0;"></select>
             </div>
-          </div>
-          <div class="col-sm-6">
-            <div id="line-stop">
-              <div class="input-group">
-                <select class="custom-select" id="start"></select>
-
-              </div>
-              <div class="input-group">
-                <select class="custom-select" id="end"></select>
-
-              </div>
-              <div class="input-group-append">
-                <button id="see-traffic" class="btn btn-outline-secondary" type="button">Ver Tráfico</button>
-              </div>
-
-
-            </div>
-
           </div>
         </div>
-      </div>
+      
+        <div class="stop-comment-buttons">
+          <div>
+            
+            <button id="show-stops" class="btn btn-light" type="button">Ver paradas</button>
+          </div>
+
+          <div>
+            <a id="see-comments" class="btn btn-light" type="">Ver comentarios </a>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div id="line-stop">
+            <div class="input-group ">
+              <select class="custom-select" id="start" onmousedown="if(this.options.length>12){this.size=12;}" onchange='this.size=0;'></select>
+            </div>
+
+            <div class="input-group ">
+              <select class="custom-select" id="end" onmousedown="if(this.options.length>12){this.size=12;}" onchange='this.size=0;'></select>
+            </div>
+          </div>
+
+        </div>
+     <div class="input-group-append">
+              <button id="see-traffic" class="btn btn-light" type="button">Ver Tráfico</button>
+            </div>
     </div>
+  </div>
   </div>
   <div id="map"></div>
 </main>

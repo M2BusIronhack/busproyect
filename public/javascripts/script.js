@@ -17,17 +17,17 @@ document.addEventListener(
     params.append("SelectDate", "20/04/2018");
 
     getListLines(api_url, params);
-    listenerLineSelected()
+    listenerLineSelected();
   },
   false
 );
 
 const listenerLineSelected = () => {
-  document.querySelector('select[id="lines"]').onchange= (e) => {
+  document.querySelector('select[id="lines"]').onchange = e => {
     let linkToBack = document.getElementById("see-comments");
     linkToBack.setAttribute("href", `line/${event.target.value}`);
-  }
-}
+  };
+};
 
 const getListLines = (url, params) => {
   axios
@@ -40,9 +40,12 @@ const getListLines = (url, params) => {
       let infoLines = document.getElementById("info-lines");
       let selectLines = document.getElementById("lines");
 
+      let defaultLines = document.createElement("option");
+      defaultLines.innerHTML = "Selecciona una linea...";
+      selectLines.appendChild(defaultLines);
+
       a.data.resultValues.forEach(e => {
-        console.log(e)
-        let info = `${e.label}: ${e.nameA}-${e.nameB}`;
+        let info = `${e.label}: ${e.nameA} - ${e.nameB}`;
         let option = document.createElement("option");
         option.value = e.label;
         option.innerHTML = info;
@@ -51,6 +54,8 @@ const getListLines = (url, params) => {
 
       let showStops = document.getElementById("show-stops");
       showStops.addEventListener("click", e => {
+        document.getElementById("start").style.display = "block";
+        document.getElementById("end").style.display = "block";
         // const datos = getParadas()
         // drawParadas(datos)
         let lines = document.getElementById("lines");
@@ -76,18 +81,30 @@ const getListLines = (url, params) => {
 
             let infoLines = document.getElementById("line-stop");
             let selectStart = document.getElementById("start");
+
+            let defaultStart = document.createElement("option");
+            defaultStart.innerHTML = "Selecciona primera parada...";
+            selectStart.appendChild(defaultStart);
+
             a.data.resultValues.forEach(e => {
               setDataValues(e, selectStart);
             });
+
+    
             let selectEnd = document.getElementById("end");
+            let defaultEnd = document.createElement("option");
+            defaultEnd.innerHTML = "Selecciona última parada ...";
+            selectEnd.appendChild(defaultEnd);
+
             a.data.resultValues.forEach(e => {
               setDataValues(e, selectEnd);
             });
 
-            let showTime = document.getElementById("see-traffic");
+           
 
-         
-          //  infoLines.appendChild(linkToBack);
+            let showTime = document.getElementById("see-traffic");
+            showTime.style.display = "block";
+            //  infoLines.appendChild(linkToBack);
 
             showTime.addEventListener("click", e => {
               let startEndObj = getStopSelectedInfo(selectedLine);
@@ -112,11 +129,11 @@ const getListLines = (url, params) => {
                 console.log(total / averageTimes.length);
               });
             });
-            infoLines.appendChild(showTime);
+            // infoLines.appendChild(showTime);
           });
       });
-      showStops.innerHTML = "ver paradas";
-      infoLines.appendChild(showStops);
+
+      // infoLines.appendChild(showStops);
     })
     .catch(e => console.log(e));
 };
