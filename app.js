@@ -85,4 +85,7 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
+const commentRoutes = require("./routes/comment")
+app.use("/comment", commentRoutes)
+
 module.exports = app;

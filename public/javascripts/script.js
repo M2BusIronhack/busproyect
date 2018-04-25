@@ -30,19 +30,17 @@ const getListLines = (url, params) => {
     })
     .then(a => {
       let infoLines = document.getElementById("info-lines");
-      let select = document.createElement("select");
-      select.id = "lines";
-      infoLines.appendChild(select);
+      let selectLines = document.getElementById("lines");
 
       a.data.resultValues.forEach(e => {
         let info = `${e.label}: ${e.nameA}-${e.nameB}`;
         let option = document.createElement("option");
         option.value = e.label;
         option.innerHTML = info;
-        select.appendChild(option);
+        selectLines.appendChild(option);
       });
 
-      let showStops = document.createElement("button");
+      let showStops = document.getElementById("show-stops");
       showStops.addEventListener("click", e => {
         // const datos = getParadas()
         // drawParadas(datos)
@@ -68,27 +66,24 @@ const getListLines = (url, params) => {
             //pero con las paradas
 
             let infoLines = document.getElementById("line-stop");
-            let select = document.createElement("select");
-            select.id = "start";
-            infoLines.appendChild(select);
-
+            let selectStart = document.getElementById("start");
             a.data.resultValues.forEach(e => {
-              setDataValues(e, select);
+              setDataValues(e, selectStart);
             });
-
-            let selectEnd = document.createElement("select");
-            selectEnd.id = "end";
-            infoLines.appendChild(selectEnd);
-
+            let selectEnd = document.getElementById("end");
             a.data.resultValues.forEach(e => {
               setDataValues(e, selectEnd);
             });
 
-            let showTime = document.createElement("button");
-            showTime.innerHTML = "¿hay tráfico?";
+            let showTime = document.getElementById("see-traffic");
+
+            let linkToBack = document.getElementById("see-comments");
+            console.log(linkToBack);
+            linkToBack.setAttribute("href", `comment/${selectedLine}`);
+            infoLines.appendChild(linkToBack);
+
             showTime.addEventListener("click", e => {
               let startEndObj = getStopSelectedInfo(selectedLine);
-              // console.log(startEndObj[0])
 
               initMap(startEndObj[0], startEndObj[1], selectedLine);
 
@@ -104,7 +99,6 @@ const getListLines = (url, params) => {
                   )
                 )
               );
-              console.log(timeRoutePromises);
               Promise.all(timeRoutePromises).then(timeInfo => {
                 console.log(timeInfo);
                 let total = averageTimes.reduce((total, num) => {
@@ -195,10 +189,7 @@ const calculateAndDisplayRoute = (
       origin: pointA,
       destination: pointB,
       travelMode: "TRANSIT",
-      transitOptions: {
-        departureTime: new Date(),
-        modes: ["BUS"]
-      },
+      transitOptions: { departureTime: new Date(), modes: ["BUS"] },
       provideRouteAlternatives: true
     },
     (response, status) => {
@@ -213,18 +204,12 @@ const calculateAndDisplayRoute = (
 
                 let mapa = document.getElementById("map");
                 mapa.style.display = "block";
-
                 response.routes = [response.routes[i]];
-
                 directionsDisplay.setDirections(response);
               }
-              //  console.log(a.transit.line.short_name);
             }
-
-            //console.log(a.steps);
           });
         });
-        //    directionsDisplay.setDirections(response);
       } else {
         //   window.alert("Directions request failed due to " + status);
       }
@@ -233,7 +218,7 @@ const calculateAndDisplayRoute = (
 };
 
 const calculateTimeRoute = (start, end, line, time) => {
-  console.log(time)
+  console.log(time);
   return new Promise((resolve, reject) => {
     (directionsService = new google.maps.DirectionsService()),
       directionsService.route(
@@ -269,22 +254,6 @@ const calculateTimeRoute = (start, end, line, time) => {
                 }
               }
             }
-
-            // response.routes.forEach((e, i) => {
-            //   e.legs[0].steps.forEach(a => {
-            //     if (a.travel_mode == "TRANSIT") {
-            //       if (a.transit.line.short_name === line) {
-            //         console.log(`DURACION ESTIMADA: ${a.duration.text}`);
-            //         console.log(`FOUND LINEA: ${a.transit.line.short_name}`);
-            //         duration += a.duration.text.split(" ")[0]
-
-            //       }
-            //       //  console.log(a.transit.line.short_name);
-            //     }
-            //     //console.log(a.steps);
-            //   });
-            // });
-            //    directionsDisplay.setDirections(response);
           } else {
             window.alert("Directions request failed due to " + status);
           }
