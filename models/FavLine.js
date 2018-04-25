@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const FavLineSchema = new Schema(
   {
     user: { type: String },
-    line: [{ type: Schema.Types.ObjectId, ref:'line'}]
+    line: [{ type: String }]
   },
   {
     timestamps: {
@@ -14,5 +14,5 @@ const FavLineSchema = new Schema(
   }
 );
 
-const FavLine = mongoose.model("User", FavLineSchema);
+const FavLine = mongoose.model("FavLine", FavLineSchema);
 module.exports = FavLine;

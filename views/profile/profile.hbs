@@ -1,30 +1,8 @@
-{{!-- <h1>Your profile</h1> --}}
 
-{{!-- {{#with user}}
-    <p>Name:{{this.username}}</p>  
-    <div>
-        <p>Your image</p>
-        <img src="{{this.img}}" alt="userProfile" width=200>
-    </div>  
-
-{{/with}} --}}
-
-
-
-
-
-
-
-
-
-
-
-
-{{#with user}}
 <figure class="snip1578">
-    <img src="{{this.img}}" alt="profile-sample6" />
+    <img src="{{user.img}}" alt="profile-sample6" />
     <figcaption>
-        <h3>{{this.username}}</h3>
+        <h3>{{user.username}}</h3>
         <div class="icons">
             <a href="#">
                 <i class="ion-social-twitter"></i>
@@ -38,14 +16,21 @@
         </div>
     </figcaption>
 </figure>
-{{/with}}
 
-{{#with user}}
-<div> Comentarios
-    <ul>
-        <li>{{this.commentBody}}</li>
-    </ul>
-</div>
-{{/with}}
+
+{{#if comments}} 
+<h1>COMMENT</h1>
+{{#each comments}}
+
+<p>CONTENT: {{this.title}} </p>
+<p>{{this.commentBody}} </p>
+
+<a href="/comment/delete/{{this._id}}">DELETE</a>
+<br> {{/each}} {{else}}
+<p> THERE ARE NOT COMMENTS</p>
+{{/if}} 
+
+
+
 
 <a href="/profile/{{user._id}}/edit">Edit Profile</a>
