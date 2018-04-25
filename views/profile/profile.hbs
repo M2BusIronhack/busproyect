@@ -1,12 +1,17 @@
 
 
         <div class="container text-center text-color-profile">
+            <div class="center">
+                <button type="button" class="btn btn-light btn-margin btn-text-color">
+                    <a href="/profile/{{user._id}}/edit">Edit Profile</a>
+                </button>
+            </div>
             <div class="profile-name">
                 <h3>{{user.username}}</h3>
             </div>
             
             <div class="profile-img">
-                <img class="rounded-circle" src="{{user.img}}"  />
+                <img class="rounded-circle img-thumbnail" src="{{user.img}}"/>
             </div>
             <div class="col-sm-12">
                  {{#if comments}}
@@ -22,23 +27,21 @@
                          <p> THERE ARE NOT COMMENTS</p>
                     {{/if}}
             </div>
-          
             <div class="col-sm-12">
-                <button type="button" class="btn btn-light btn-margin btn-block btn-text-color fixed-bottom">
-                    <a href="/profile/{{user._id}}/edit">Edit Profile</a>
-                </button>
-            </div>
+                    {{#if favLines}}
+                    <h1>LINES</h1>
+                    {{#each favLines}}
+                    
+                    <p>FAV LINES: {{this.line}} </p>
+                    <a href="/line/delete/{{this.line}}">DELETE</a>
+                    <br> {{/each}} {{else}}
+                    <p> THERE ARE NOT FAV LINES</p>
+                    {{/if}}
+             </div>
+            
         </div>
 
-{{#if favLines}} 
-<h1>LINES</h1>
-{{#each favLines}}
 
-<p>FAV LINES: {{this.line}} </p>
-<a href="/line/delete/{{this.line}}">DELETE</a>
-<br> {{/each}} {{else}}
-<p> THERE ARE NOT FAV LINES</p>
-{{/if}} 
 
 
 
