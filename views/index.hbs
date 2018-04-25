@@ -1,66 +1,30 @@
-{{!--
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-
-<a href="auth/login">LOG IN</a>
-<a href="auth/signup">SIGN UP</a>
-<br>
-<br> {{#if user }}
-<p> Hello, {{user.username}}. </p>
-<a href="auth/logout"> LOGOUT </a>
-{{else}} *for debug* NO USER {{/if}} --}}
 
 
-
-
-
-
-
-<main>
-  <div class="container-fluid no-pad">
+<div class="container-fluid no-pad">
     <div class="row no-margin-row justify-content-center align-items-center hero full-screen">
-      <div class="col-sm-12">
-        {{!--
-        <div class="img-front img-fluid" alt="Responsive image"> --}}
-          <div class="title-container text-center">
-            <h1>{{title}}</h1>
-            <h2>Loren </h2>
-          </div>
-          <div class="col-sm-6">
-            <div id="info-lines">
-              <div class="input-group">
-                <select class="custom-select" id="lines"></select>
-                <div class="input-group-append">
-                  <button id="show-stops" class="btn btn-outline-secondary" type="button">Ver</button>
-                </div>
-                   <div class="input-group-append">
-                <a id="see-comments" class="btn btn-outline-secondary" type="">See Comments</a>
-              </div>
-              </div>
-           
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div id="line-stop">
-              <div class="input-group">
-                <select class="custom-select" id="start"></select>
-
-              </div>
-              <div class="input-group">
-                <select class="custom-select" id="end"></select>
-
-              </div>
-              <div class="input-group-append">
-                <button id="see-traffic" class="btn btn-outline-secondary" type="button">Ver Tráfico</button>
-              </div>
-
-
-            </div>
-
-          </div>
+        <div class="logo">
+            <h2>NOMBRE</h2>
+            <img src="/images/bus.svg" alt="icons-bus">
         </div>
-      </div>
-    </div>
-  </div>
-  <div id="map"></div>
-</main>
+        
+        <div class="container text-center">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-light btn-margin btn-block btn-text-color"><a href="auth/login">LOGIN</a></button>
+            </div>
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-light btn-margin btn-block btn-text-color"><a href="auth/signup">SIGNUP</a></button>
+            </div>
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-light btn-margin btn-block btn-text-color"><a href="/index">VIEW LINES BUS</a></button>
+            </div>
+        </div>
+       
+   </div>
+</div>
+
+
+
+
+
+
+

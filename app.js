@@ -82,6 +82,8 @@ app.use((req, res, next) => {
   next();
 })
 
+
+
 const index = require("./routes/index");
 app.use("/", index);
 
@@ -93,5 +95,7 @@ app.use("/profile", profileRoute);
 
 const commentRoutes = require("./routes/comment")
 app.use("/comment", commentRoutes)
+
+
 
 module.exports = app;

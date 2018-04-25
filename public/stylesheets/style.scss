@@ -1,9 +1,16 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  // background-color: #8FB8FF;
+  // background-color: #FF6B63
+  // background-color: #151F94;
+  // background-color: #FF9188;
+  background-color: #507694;
+  
 }
 
 a {
   color: #00b7ff;
+ 
 }
 
 * {
@@ -19,14 +26,14 @@ a {
   padding: 0 !important;
 }
 
-.full-screen {
-  min-height: calc(100vh - 50px);
-}
+// .full-screen {
+//   min-height: calc(100vh - 50px);
+// }
 
 .hero {
-  background: url("../images/img-front.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  // background: url("../images/img-front.jpg");
+  // background-size: cover;
+  // background-repeat: no-repeat;
 }
 
 .no-margin-row {
@@ -42,4 +49,15 @@ a {
   height: 400px;
   border: 1px solid black;
   display: none;
+}
+.logo{
+  font-size: 3em;
+  padding: 20% 0;
+}
+.btn-margin{
+   margin: 20% 0;
+
+}
+.btn-text-color{
+  color: grey;
 }

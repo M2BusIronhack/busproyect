@@ -6,9 +6,15 @@ const qs = require("qs");
 const User = require("../models/User");
 
 
-/* GET home page */
+
 router.get("/", (req, res, next) => {
   res.render("index", { user: req.user });
 });
+
+/* GET home page */
+router.get("/index", (req, res, next) => {
+  res.render("indexLines", { user: req.user });
+});
+
 
 module.exports = router;
