@@ -47,7 +47,8 @@ authRoutes.post("/signup",  (req, res, next) => {
     const newUser = new User({
       username,
       email,
-      password: hashPass
+      password: hashPass, 
+      img: "http://www.katakrak.net/sites/default/files/default_images/default_profile_0.jpg"
     });
 
     newUser.save(err => {

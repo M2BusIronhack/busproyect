@@ -16,7 +16,6 @@ profileRoute.get("/", (req, res, next) => {
           hasFav = true;
           favLines = favLinesUser;
         }
-        //   console.log(a);
       })
       .then(() => {
         if (comments.length === 0) {
@@ -30,7 +29,6 @@ profileRoute.get("/", (req, res, next) => {
 
 // Udpate and show prolife update form
 profileRoute.get("/:id/edit", (req, res) => {
-  // User.findById(req.params.id)
   User.findById(res.locals.user._id).then(user => {
     res.render("profile/profile_edit", { user });
   });
@@ -38,15 +36,23 @@ profileRoute.get("/:id/edit", (req, res) => {
 
 // Udpate profile in DB
 profileRoute.post("/:id/edit", uploadCloud.single("photo"), (req, res) => {
-  // const { username, email, password,commentBody } = req.body;
-  // const {img} = req.file.url;
-  // let updates = { username, email, password, commentBody  };
-  // updates = {img};
+  let urlFile;
+  if (
+    req.file === undefined &&
+    res.locals.user.img ==
+      "http://www.katakrak.net/sites/default/files/default_images/default_profile_0.jpg"
+  ) {
+    urlFile = res.locals.user.img;
+  } else if (req.file != undefined) {
+    urlFile = req.file.url;
+  } else {
+    urlFile = res.locals.user.img;
+  }
+
   const updates = {
     username: req.body.username,
     email: req.body.email,
-    // commentBody: req.body.commentBody,
-    img: req.file.url
+    img: urlFile
   };
 
   User.findByIdAndUpdate(req.params.id, updates).then(() => {

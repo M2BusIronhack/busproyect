@@ -3,23 +3,21 @@
     <label for="">Name:</label>
     <input type="text" name="username" placeholder="" value="{{user.username}}">
 
-  
+
     <label for=" ">Email:</label>
     <input type="text" name="email" value="{{user.email}}">
 
-    <label for=" ">Comments:</label>
-    <input type="text" name="comments" value="{{user.commentBody}}">
 
     <input type="file" name="photo">
-    <button type="submit">EDIT</button>
+    <button type="submit" class="btn btn-light btn-margin btn-text-color">EDIT</button>
 
 </form>
 
 <br>
 <br>
 
-<a href="/profile/">Back your profile</a>
+
 
 <button type="button" class="btn btn-light btn-margin btn-text-color">
-    <a href="/profile/{{user._id}}/edit">Edit Profile</a>
+    <a href="/profile/">Back your profile</a>
 </button>
