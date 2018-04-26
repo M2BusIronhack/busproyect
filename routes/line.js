@@ -17,6 +17,15 @@ lineRoute.get("/fav/:lineID", (req, res, next) => {
   });
 });
 
+lineRoute.get("/delete/fav/:lineID", (req, res, next) => {
+  FavLine.findOneAndRemove({
+    $and: [{ user: res.locals.user._id }, { line: req.params.lineID }]
+  }).then(() => {
+    console.log("FAV BORRADO");
+    res.redirect(`/line/${req.params.lineID}`);
+  });
+});
+
 lineRoute.get("/delete/:lineID", (req, res, next) => {
   FavLine.findOneAndRemove({
     $and: [{ user: res.locals.user._id }, { line: req.params.lineID }]
@@ -48,14 +57,12 @@ lineRoute.get("/:lineID", (req, res, next) => {
     .then(infoApi => {
       Comment.find({ line: selectedLine })
         .then(comments => {
-  
-          let rateLine=0;
-          comments.forEach((e)=> {
-           rateLine += parseInt(e.rating)
-     
-          }) 
-          
-         let rateLineAvg = rateLine/(comments.length)
+          let rateLine = 0;
+          comments.forEach(e => {
+            rateLine += parseInt(e.rating);
+          });
+
+          let rateLineAvg = Math.round(rateLine / comments.length * 100) / 100;
 
           let hasFav = false;
           //cuando renderizas la vista de la linea & hay un usuario logeado
@@ -75,7 +82,12 @@ lineRoute.get("/:lineID", (req, res, next) => {
                 if (comments.length === 0) {
                   res.render("line", { infoLine, hasFav });
                 } else {
-                  res.render("line", { comments, infoLine, hasFav, rateLineAvg });
+                  res.render("line", {
+                    comments,
+                    infoLine,
+                    hasFav,
+                    rateLineAvg
+                  });
                 }
               });
           }

@@ -90,7 +90,6 @@ const getListLines = (url, params) => {
               setDataValues(e, selectStart);
             });
 
-    
             let selectEnd = document.getElementById("end");
             let defaultEnd = document.createElement("option");
             defaultEnd.innerHTML = "Selecciona última parada ...";
@@ -99,8 +98,6 @@ const getListLines = (url, params) => {
             a.data.resultValues.forEach(e => {
               setDataValues(e, selectEnd);
             });
-
-           
 
             let showTime = document.getElementById("see-traffic");
             showTime.style.display = "block";
@@ -218,6 +215,10 @@ const calculateAndDisplayRoute = (
           e.legs[0].steps.forEach(a => {
             if (a.travel_mode == "TRANSIT") {
               if (a.transit.line.short_name === line) {
+                document.getElementById(
+                  "est-duration"
+                ).innerHTML = `Duración estimada del trayecto
+                ${a.duration.text}`;
                 console.log(`DURACION ESTIMADA: ${a.duration.text}`);
                 console.log(`FOUND LINEA: ${a.transit.line.short_name}`);
 

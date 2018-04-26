@@ -1,39 +1,80 @@
-<form action="/comment/new/{{selectedLine}}" method="POST" id="form-container">
-
-<h1> COMMENT FOR LINE: {{selectedLine}}</h1>
-  <label for="title">Title</label>
-
-  <input id="title" type="text" name="title" placeholder="Comment Title">
-
-  <br>
-  <br>
-
-  <textarea rows="4" cols="50" type="text" name="commentBody" placeholder="Comment"> your comment </textarea>
-  <br>
-  <br>
+<main>
+  <div class="container-fluid no-pad">
+    <div class="row no-margin-row justify-content-center align-items-center hero full-screen">
 
 
-  <select name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <p>Llovía?</p>
-  <input type="radio" name="rain" value="true" checked> Sí
-  <br>
-  <input type="radio" name="rain" value="false"> No
-  <br>
 
-  <input type="date" name="date">
+      <div class="card text-center info-linea-css">
+        <div class="card-header">
+          <h3> Linea {{selectedLine}}</h3>
+        </div>
+      </div>
 
-  <input> {{#if message }}
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
 
-  <br>
-  <br>
-  <input type="submit" value="dejar comentario">
+    </div>
+  </div>
 
-</form>
+  <form action="/comment/new/{{selectedLine}}" method="POST" id="form-new-comment">
+    <div class="form-group">
+      <label for="title">Titulo</label>
+      <input type="text" id="title" class="form-control" name="title">
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="commentBody">Tu opinión</label>
+      <textarea class="form-control" name="commentBody" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Tu puntuación:</label>
+
+      <select class="form-control" name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+
+    </div>
+    <div class="form-group">
+      <p>¿LLovía?</p>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="rain" value="true" checked>
+        <label class="form-check-label" for="rain">Si
+        </label>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="rain" value="false" checked>
+        <label class="form-check-label" for="rain">No
+        </label>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="date">Fecha</label>
+      <input type="date" name="date" min="1000-01-01" max="3000-12-31" class="form-control">
+
+    </div>
+
+
+
+    {{#if message }}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+
+    <div class="input-group">
+      <input type="submit" value="Comentar" class="btn btn-light btn-margin btn-block btn-text-color">
+    </div>
+
+  </form>
+
+</main>

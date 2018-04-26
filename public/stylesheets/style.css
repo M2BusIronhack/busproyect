@@ -67,4 +67,15 @@ a {
 #start {
   margin-bottom: 1.5%; }
 
+.fondo-blanco {
+  background-color: white;
+  color: black;
+  width: 80%; }
+
+.info-linea-css {
+  margin: 5%; }
+
+#form-new-comment {
+  margin: 5%; }
+
 /*# sourceMappingURL=style.css.map */
