@@ -106,8 +106,8 @@ const getListLines = (url, params) => {
             showTime.addEventListener("click", e => {
               let startEndObj = getStopSelectedInfo(selectedLine);
               initMap(startEndObj[0], startEndObj[1], selectedLine);
-              let time = convertToSec(new Date(), 5);
-              console.log(time);
+              let time = convertToSec(new Date(), 8);
+              // console.log(time);
               time.forEach(e =>
                 timeRoutePromises.push(
                   calculateTimeRoute(
@@ -119,11 +119,13 @@ const getListLines = (url, params) => {
                 )
               );
               Promise.all(timeRoutePromises).then(timeInfo => {
-                console.log(timeInfo);
-                let total = averageTimes.reduce((total, num) => {
-                  return total + num;
-                });
-                console.log(total / averageTimes.length);
+                //    console.log("promesas=> " + timeInfo);
+
+                drawChart(averageTimes);
+                //     let total = averageTimes.reduce((total, num) => {
+                //       return total + num;
+                //     });
+                // //    console.log(total / averageTimes.length);
               });
             });
             // infoLines.appendChild(showTime);
@@ -155,7 +157,7 @@ const getStopSelectedInfo = selectedLine => {
     lng: stopStartSelected.getAttribute("lng"),
     lat: stopStartSelected.getAttribute("lat")
   };
-  console.log(startPointObj);
+  //console.log(startPointObj);
 
   let endPoint = document.getElementById("end");
   let stopEndSelected = endPoint.options[endPoint.selectedIndex];
@@ -210,15 +212,16 @@ const calculateAndDisplayRoute = (
     },
     (response, status) => {
       if (status == google.maps.DirectionsStatus.OK) {
-        console.log(response);
+        //   console.log(response);
         response.routes.forEach((e, i) => {
           e.legs[0].steps.forEach(a => {
             if (a.travel_mode == "TRANSIT") {
               if (a.transit.line.short_name === line) {
-                document.getElementById(
-                  "est-duration"
-                ).innerHTML = `Duración estimada del trayecto
+                let textDuration = document.getElementById("est-duration");
+                textDuration.innerHTML = `Duración estimada del trayecto
                 ${a.duration.text}`;
+
+                textDuration.style.display = "block";
                 console.log(`DURACION ESTIMADA: ${a.duration.text}`);
                 console.log(`FOUND LINEA: ${a.transit.line.short_name}`);
 
@@ -238,7 +241,6 @@ const calculateAndDisplayRoute = (
 };
 
 const calculateTimeRoute = (start, end, line, time) => {
-  console.log(time);
   return new Promise((resolve, reject) => {
     (directionsService = new google.maps.DirectionsService()),
       directionsService.route(
@@ -296,14 +298,71 @@ const convertToMin = time => {
 };
 
 const convertToSec = (date, num) => {
+  var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+  var day = currentDate.setHours(0);
+  var oneDayBefore = new Date(day).setMinutes(0);
+
   //recibe la fecha en formato => 2018-04-24T17:07:27.605Z
-  let dateInSec = Math.round(new Date(date).getTime());
-  let dayInSec = 60 * 60 * 24;
+  let startHour = Math.round(new Date(oneDayBefore).getTime());
+  let twoHourInSec = 60 * 60 * 2 * 1000;
   let datesInSec = [];
   // let UMT = 60*60*2 //2h
-  let delay = 10000;
-  for (i = 0; i < num; i++) {
-    datesInSec.push(delay + dateInSec + dayInSec * i);
+  let start = 60 * 60 * 8 * 1000;
+  datesInSec[0] = start + startHour; //empieza un dia despues a las 8h
+  for (i = 1; i < num; i++) {
+    datesInSec.push(twoHourInSec * i + datesInSec[0]);
   }
   return datesInSec;
+};
+
+const drawChart = durations => {
+  durations.unshift(0);
+  const hours = ["", "8", "10", "12", "14", "16", "18", "20", "22"];
+  let ctx = document.getElementById("durationChart").getContext("2d");
+  let chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: hours,
+      datasets: [
+        {
+          label: "Variación de tiempo",
+          backgroundColor: "rgb(255, 99, 132)",
+          borderColor: "rgb(255, 99, 132)",
+          pointBackgroundColor: "#fff",
+          pointHoverBackgroundColor: "#55bae7",
+          data: durations
+        }
+      ]
+    },
+    options: {
+      legend: {
+        labels: {
+          fontColor: "white",
+          fontSize: 18
+        }
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              fontColor: "white"
+            },
+            gridLines: {
+              display: false
+            }
+          }
+        ],
+        xAxes: [
+          {
+            ticks: {
+              fontColor: "white"
+            },
+            gridLines: {
+              display: false
+            }
+          }
+        ]
+      }
+    }
+  });
 };

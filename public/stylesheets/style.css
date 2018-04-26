@@ -78,4 +78,8 @@ a {
 #form-new-comment {
   margin: 5%; }
 
+#est-duration {
+  padding: 3%;
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */
