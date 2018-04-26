@@ -1,63 +1,70 @@
+<div class="container text-center text-color-profile">
 
-
-    <div class="container text-center text-color-profile">
-            <div class="center">
-                <button type="button" class="btn btn-light btn-margin btn-text-color">
-                    <a href="/profile/{{user._id}}/edit">Edit Profile</a>
-                </button>
-            </div>
-            <div class="profile-name">
-                <h3>{{user.username}}</h3>
-            </div>
-            
-            <div class="profile-img">
-                <img class="rounded-circle img-thumbnail" src="{{user.img}}"/>
-            </div>
-
-    <div class="container">
-        {{#if favLines}}        
-            <div class="card border-info mb-3">
-                <div class="card-header color-comment"><i>Mis líneas favoritas</i></div>
-                <div class="card-body text-info">
-                     {{#each favLines}}
-                        <p class="card-text text-left line-space">Número {{this.line}}</p>
-                     {{/each}}
-                </div>
-            </div>
-                {{else}}
-                    <i> No tienes líneas favoritas</i>
-        {{/if}}
+    <div class="profile-name">
+        <h3>{{user.username}}</h3>
     </div>
 
-
-
-            <div class="col-sm-12">
-                {{#if comments}}
-                    <div class="card border-secondary mb-3"> 
-                        <div class="card-header color-comment">COMENTARIO</div>
-                            <div class="card-body text-secondary">
-                                {{#each comments}}
-                                    <h5 class="card-title text-left">Título:{{this.title}}</h5>
-                                    <p class="card-text text-justify">{{this.commentBody}}.</p>
-                                    <a href="/comment/delete/{{this._id}}"><i class="fa fa-trash" style="font-size:24px"></i></a>   
-                                {{/each}} 
-
-                            </div>
-                    </div>
-            </div>
-                            {{else}}
-                                    <i> No hay comentarios.</i>
-                            {{/if}}
-
-                              
-                        
+    <div class="container text-center text-color-profile">
+        <div class="center">
+            <button type="button" class="btn btn-light btn-margin btn-text-color">
+                <a href="/profile/{{user._id}}/edit">Edit Profile</a>
+            </button>
+        </div>
+        <div class="profile-name">
+            <h3>{{user.username}}</h3>
         </div>
 
-           
-            
-    
+        <div class="profile-img">
+            <img class="rounded-circle img-thumbnail" src="{{user.img}}" />
+        </div>
+
+        <div class="container">
+            {{#if favLines}}
+            <div class="card border-info mb-3">
+                <div class="card-header color-comment">
+                    <i>Mis líneas favoritas</i>
+                </div>
+                <div class="card-body text-info">
+                    {{#each favLines}}
+
+                    <p class="card-text text-left line-space">
+                        <a href="/line/{{this.line}}">Linea {{this.line}}</a>
+                    </p>
+                    {{/each}}
+                </div>
+            </div>
+            {{else}}
+            <i> No tienes líneas favoritas</i>
+            {{/if}}
+        </div>
 
 
 
+        <div class="col-sm-12">
+            {{#if comments}}
+            <div class="card border-secondary mb-3">
+                <div class="card-header color-comment">
+                    <i>Tus comentarios</i>
+                </div>
+                <div class="card-body text-secondary">
+                    {{#each comments}}
+                    <h5 class="card-title text-left">{{this.title}}</h5>
+                    <p class="card-text text-justify">{{this.commentBody}}</p>
+                    <p> Sobre la línea {{this.line}}
+                    </p>
+                    <p>{{this.date}}</p>
+                    <a href="/comment/delete/{{this._id}}">
+                        <i class="fa fa-trash" style="font-size:24px"></i>
+                    </a>
+                    <hr> {{/each}}
+
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <i> No has dejado ningún comentario.</i>
+        {{/if}}
 
 
+
+    </div>

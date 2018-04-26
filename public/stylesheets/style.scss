@@ -39,11 +39,10 @@ a {
   margin: 0 auto;
 }
 
-.header{
+.header {
   margin-top: 30px;
- 
 }
-.mv-img{
+.mv-img {
   margin-top: 60px;
 }
 
@@ -63,6 +62,18 @@ a {
   margin: 5%;
 }
 
+.btn-margin {
+  margin-top: 10%;
+}
+.btn-text-color {
+  color: grey;
+}
+.profile-name {
+  margin: 10% 0;
+}
+.profile-img {
+  margin: 5%;
+}
 .text-color-profile {
   color: white;
 }
@@ -78,40 +89,39 @@ a {
   justify-content: center;
   margin-top: 2%;
 }
-
 #see-comments {
   margin-left: 2%;
 }
 
 #line-stop {
-  padding: 2%
+  padding: 2%;
 }
 
 #see-traffic {
-  margin: 5%
+  margin: 5%;
 }
 
 #start {
-  margin-bottom: 1.5%
+  margin-bottom: 1.5%;
 }
 
 .fondo-blanco {
   background-color: white;
   color: black;
-  width: 80%
+  width: 80%;
 }
 
 .info-linea-css {
-  margin: 5%
+  margin: 5%;
 }
 
 #form-new-comment {
-  margin: 5%
+  margin: 5%;
 }
 
 #est-duration {
   padding: 3%;
-  display: none
+  display: none;
 }
 
 .text-color {
@@ -138,7 +148,7 @@ a {
   // float: left;
   min-width: 0;
   padding: 0;
-  margin: .900rem 0 0; // font-size: 1rem;
+  margin: 0.9rem 0 0; // font-size: 1rem;
   // color: #212529;
   // text-align: left;
   // list-style: none;
@@ -151,7 +161,6 @@ a {
 .color-comment {
   color: grey;
 }
-
 .btn-form {
   border-radius: 50%;
   width: 20px;
@@ -167,7 +176,6 @@ h2 {
 .color-text {
   color: #fff;
 }
-
 .img-bus {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -176,18 +184,30 @@ h2 {
 .space-btn {
   margin: 35px 0 25px 0;
 }
-.fondo-color{
-    background-color: #fff;
-    border-radius: 15px;
-    width: 80%;
+.fondo-color {
+  background-color: #fff;
+  border-radius: 15px;
+  width: 80%;
 }
 
-  .pepe{
-    font-size: 1em;
-  }
-  .fa-home{
-    font-size: 2em;
-  }
-  .out-line:active{
-      text-decoration: none;
-  }
+.pepe {
+  font-size: 1em;
+}
+.fa-home {
+  font-size: 2em;
+}
+.out-line:active {
+  text-decoration: none;
+}
+.space-btn {
+  margin: 35px 0 25px 0;
+}
+
+.center {
+  padding-bottom: 5%;
+}
+
+.gm-style-iw {
+  width: 40px;
+  height: 100px;
+}

@@ -19,7 +19,7 @@
     {{!--
     <h5 class="card-title">Special title treatment</h5> --}}
     <p class="card-text">
-        <p>Longitud: {{infoLine.longitudS1}}</p>
+        <p>Longitud: {{infoLine.longitudS1}} Km </p>
         <p> Número de paradas: {{infoLine.numParadasS1}}</p>
         {{!--
         <a href="#" class="btn btn-primary">Go somewhere</a> --}}
@@ -31,7 +31,6 @@
                 <span class="fa fa-heart"></span>
             </a>
 
-
             {{else}}
             <a href="/line/fav/{{infoLine.label}}">
                 <span class="fa fa-heart-o"></span>
@@ -41,43 +40,37 @@
 
         <div class="card-footer text-muted">
             {{#if user}}
-
-
             <a href="/comment/new/{{infoLine.label}}">DEJAR COMENTARIO</a>
-
             {{/if}}
         </div>
-
 </div>
 
-
-
-
-
 <div class="col-sm-12">
-    <div class="title-container text-center">
+    {{#if comments}}
+    <div class="card border-secondary mb-3">
+        <div class="card-header color-comment">Comentarios</div>
+        <div class="card-body text-secondary">
+            {{#each comments}}
+            <h5 class="card-title text-left">{{this.title}}</h5>
+            <p class="card-text text-justify">{{this.commentBody}}</p>
+            <p>Por: {{this.user.username}}, sobre la línea {{this.line}} 
+            </p>
 
-        <h5>Comentarios</h5>
+            <p>{{this.date}}</p>
+            <hr> {{/each}}
+
+        </div>
     </div>
 </div>
 
-{{#if comments}} {{#each comments}}
-<div class="col-sm-12">
-    <p>CONTENT: {{this.title}} </p>
-    <p>{{this.commentBody}} </p>
-
-    <br> {{/each}} {{else}}
-    <p> No hay comentarios</p>
-    {{/if}}
+{{else}}
+<div class="card border-secondary mb-3">
+    <div class="card-header color-comment">Comentarios</div>
+    <div class="card-body text-secondary">
+        <p class="card-text text-justify">No hay comentarios</p>
+    </div>
 </div>
-
-
-
-
-
-
-
-{{!--
+{{/if}} {{!--
 <script src='/javascripts/mapLine.js'></script> --}} {{!-- el objeto que devuelve la API tiene esta pinta: { groupNumber: '110', dateFirst: '07/04/2018 ', dateEnd: '31/12/2999
 ', line: '001', label: '1', etiqueta: '1', nameA: 'CRISTO REY ', nameB: 'PROSPERIDAD ', longitudS1: '8795,0000', longitudS2:
 '8778,0000', numParadasS1: '28', numParadasS2: '29' } } --}}
