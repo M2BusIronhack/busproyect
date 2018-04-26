@@ -28,9 +28,11 @@ a {
   display: none;
   margin: 0 auto; }
 
-.logo {
-  font-size: 3em;
-  padding: 20% 0; }
+.header {
+  margin-top: 30px; }
+
+.mv-img {
+  margin-top: 60px; }
 
 .btn-margin {
   margin-top: 10%; }
@@ -47,7 +49,9 @@ a {
 .text-color-profile {
   color: white; }
 
-#see-traffic, #start, #end {
+#see-traffic,
+#start,
+#end {
   display: none; }
 
 .stop-comment-buttons {
@@ -123,5 +127,19 @@ h2 {
 
 .space-btn {
   margin: 35px 0 25px 0; }
+
+.fondo-color {
+  background-color: #fff;
+  border-radius: 15px;
+  width: 80%; }
+
+.pepe {
+  font-size: 1em; }
+
+.fa-home {
+  font-size: 2em; }
+
+.out-line:active {
+  text-decoration: none; }
 
 /*# sourceMappingURL=style.css.map */

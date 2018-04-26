@@ -1,32 +1,37 @@
 <!-- views/auth/signup.hbs -->
-<h2>Signup</h2>
+<div class="container text-center">
 
-<form action="/auth/signup" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="User name">
+  <img src="/images/bus.svg" alt="icons-bus" class="img-bus" width=130>
 
-  <br><br>
-  
-    <label for="email-input"> Email </label>
-    <input type="email" name="email" id="email-input"
-      placeholder="e.g., nombre@gmail.com">
-<br><br>
+  <h2>Registrate</h2>
 
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
-  {{#if message }}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
+  <form action="/auth/signup" method="POST" id="form-container">
 
-  <br><br>
+    <div class="form-group">
+      <label for="username" class="color-text">Nombre</label>
+      <br>
+      <input type="username" class="form-control-sm" id="username" name="username" aria-describedby="emailHelp" placeholder="Nombre">
+    </div>
 
-  <button>Create account</button>
+    <div class="form-group">
+      <label for="exampleInputEmail1" class="color-text">Email</label>
+      <br>
+      <input type="email" class="form-control-sm" id="email" name="email" aria-describedby="emailHelp" placeholder="Introducir email">
+    </div>
 
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/auth/login">Login</a>
-  </p>
-</form>
+    <div class="form-group">
+      <label for="exampleInputPassword1" class="color-text">Contraseña</label>
+      <br>
+      <input type="password" name="password" class="form-control-sm" id="password" placeholder="Contraseña">
+    </div>
+
+    <button type="submit" class="btn btn-info space-btn border border-info">Registrate</button>
+
+    <p class="account-message space-form color-text">
+      Si ya tienes cuenta, por favor, pulsa el botón para entrar.
+    </p>
+    <a class="btn btn-info out-line" href="/auth/login" role="button">Entrar</a>
+
+  </form>
 
 

@@ -1,8 +1,8 @@
 <div class="container-fluid no-pad">
     <div class="row no-margin-row justify-content-center align-items-center hero full-screen">
-        <div class="logo">
-            <h2>NOMBRE</h2>
-            <img src="/images/bus.svg" alt="icons-bus">
+        <div class="header">
+            <h1>BusMad</h1>
+            <img src="/images/bus.svg" class="mv-img" alt="icons-bus">
         </div>
 
 
@@ -12,7 +12,7 @@
               <div class="col-sm-12">
                   <h1> ¡Hola {{user.username}}!</h1>
                 <button type="button" class="btn btn-light btn-margin btn-block btn-text-color">
-                    <a href="/auth/logout">LOGOUT</a>
+                    <a class="out-line" href="/auth/logout">LOGOUT</a>
                 </button>
             </div>
             
@@ -20,12 +20,12 @@
 
             <div class="col-sm-12">
                 <button type="button" class="btn btn-light btn-margin btn-block btn-text-color">
-                    <a href="/auth/login">LOGIN</a>
+                    <a class="out-line" href="/auth/login">LOGIN</a>
                 </button>
             </div>
             <div class="col-sm-12">
                 <button type="button" class="btn btn-light btn-margin btn-block btn-text-color">
-                    <a href="/auth/signup">SIGNUP</a>
+                    <a class="out-line" href="/auth/signup">SIGNUP</a>
                 </button>
             </div>
             {{/if}}
