@@ -5,6 +5,7 @@ const axios = require("axios");
 const qs = require("qs");
 const Comment = require("../models/Comment");
 const FavLine = require("../models/FavLine");
+const User = require("../models/User");
 
 lineRoute.get("/fav/:lineID", (req, res, next) => {
   const favLine = new FavLine({
@@ -56,14 +57,15 @@ lineRoute.get("/:lineID", (req, res, next) => {
     })
     .then(infoApi => {
       Comment.find({ line: selectedLine })
+        .populate("user")
         .then(comments => {
           let rateLine = 0;
           comments.forEach(e => {
+            
             rateLine += parseInt(e.rating);
           });
 
           let rateLineAvg = Math.round(rateLine / comments.length * 100) / 100;
-
           let hasFav = false;
           //cuando renderizas la vista de la linea & hay un usuario logeado
           //tiene que salir si esa linea es favorita o no
@@ -79,6 +81,7 @@ lineRoute.get("/:lineID", (req, res, next) => {
               })
               .then(() => {
                 let infoLine = infoApi.data.resultValues;
+                infoLine.longitudS1 = Math.round(parseInt(infoLine.longitudS1))/1000;
                 if (comments.length === 0) {
                   res.render("line", { infoLine, hasFav });
                 } else {

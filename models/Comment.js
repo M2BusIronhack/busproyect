@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: "user" },
+    user: { type: Schema.Types.ObjectId, ref: "User" },
     line: { type: String },
     title: { type: String },
     commentBody: { type: String },
@@ -11,7 +11,7 @@ const commentSchema = new Schema(
     img: { type: String },
     rain: { type: Boolean },
    // lostObject: { type: Boolean },
-    date: { type: Date }
+    date: { type: String }
   },
   {
     timestamps: {

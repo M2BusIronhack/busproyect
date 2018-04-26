@@ -22,23 +22,27 @@ commentRouter.get("/new/:id", (req, res, next) => {
 
 commentRouter.post("/new/:id", (req, res, next) => {
   const { title, commentBody, rating, rain, date } = req.body;
+  console.log(date);
+  let partDate = date.split("-");
+  let formatedDate = `${partDate[2]}/${partDate[1]}/${partDate[0]}`;
+
   const comment = new Comment({
     user: req.user.id,
     title,
     commentBody,
     rating,
     rain,
-    date,
+    date: formatedDate,
     line: req.params.id
   });
+
   comment
     .save()
     .then(() => {
       console.log("all good");
-      res.redirect(`/line/${req.params.id}`)
+      res.redirect(`/line/${req.params.id}`);
     })
     .catch(err => next(err));
 });
-
 
 module.exports = commentRouter;
