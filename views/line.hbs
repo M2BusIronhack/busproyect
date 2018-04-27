@@ -8,22 +8,17 @@
     </div>
 
     <div class="card-header">
-
         {{#if comments}}
         <p>
-            <span class="fa fa-star"></span> {{rateLineAvg}}/5</p>
+            <span class="fa fa-star"></span> {{rateLineAvg}}/5
+        </p>
         {{/if}}
 
     </div>
 
-    {{!--
-    <h5 class="card-title">Special title treatment</h5> --}}
     <p class="card-text">
         <p>Longitud: {{infoLine.longitudS1}} Km </p>
         <p> Número de paradas: {{infoLine.numParadasS1}}</p>
-        {{!--
-        <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-
 
         <div class="card-footer text-muted">
             {{#if hasFav}}
@@ -53,7 +48,7 @@
             {{#each comments}}
             <h5 class="card-title text-left">{{this.title}}</h5>
             <p class="card-text text-justify">{{this.commentBody}}</p>
-            <p>Por: {{this.user.username}}, sobre la línea {{this.line}} 
+            <p>Por: {{this.user.username}}, sobre la línea {{this.line}}
             </p>
 
             <p>{{this.date}}</p>

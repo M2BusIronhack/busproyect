@@ -1,7 +1,9 @@
 <div class="container-fluid no-pad">
     <div class="row no-margin-row justify-content-center align-items-center hero full-screen">
         <div class="header">
-            <h1>BusMad</h1>
+            <h1 id="app-name">BusMad</h1>
+            <div id="slogan">Siempre sabes cuándo vas a llegar</div>
+
             <img src="/images/bus.svg" class="mv-img" alt="icons-bus">
         </div>
 
@@ -9,31 +11,30 @@
         <div class="container text-center">
 
             {{#if user}}
-              <div class="col-sm-12">
-                  <h1> ¡Hola {{user.username}}!</h1>
-                <button type="button" class="btn btn-light btn-margin btn-block btn-text-color">
-                    <a class="out-line" href="/auth/logout">LOGOUT</a>
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-light btn-margin btn-block btn-text-color btn-info border-info">
+                    <a class="out-line" href="/profile">MI PERFIL</a>
                 </button>
             </div>
-            
-             {{else}}
+
+
+            {{else}}
 
             <div class="col-sm-12">
                 <button type="button" class="btn btn-light btn-margin btn-block btn-text-color">
-                    <a class="out-line" href="/auth/login">LOGIN</a>
+                    <a class="out-line" href="/auth/login">INICIAR SESIÓN</a>
                 </button>
             </div>
             <div class="col-sm-12">
                 <button type="button" class="btn btn-light btn-margin btn-block btn-text-color">
-                    <a class="out-line" href="/auth/signup">SIGNUP</a>
+                    <a class="out-line" href="/auth/signup">REGISTRARSE</a>
                 </button>
             </div>
             {{/if}}
 
-
             <div class="col-sm-12">
                 <button type="button" class="btn btn-light btn-margin btn-block btn-text-color">
-                    <a href="/index">VIEW LINES BUS</a>
+                    <a href="/index">VER LÍNEAS DE AUTOBÚS</a>
                 </button>
             </div>
         </div>

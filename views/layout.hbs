@@ -7,49 +7,45 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
 <body>
   <nav class="nav-color">
-      <ul class="nav nav-pills justify-content-between">
-        <li class="nav-item">
-          <a class="nav-link active" href="/">
-            <span class="fa fa-home img-home"></span>
-          </a>
-        </li>
-        <li class="nav-item dropdown text-color">
-          <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
-          <div class="dropdown-menu">
-            {{#if user}} {{!--
-            <p>Hi,{{user.username}} </p> --}} {{!--
-            <li class="nav-item">
-              <a class="nav-link" href="/auth/logout">Logout</a>
-            </li> --}}
-            <a class="dropdown-item" href="/auth/logout">Logout</a>
-            {{else}} {{!--
-            <li class="nav-item">
-              <a class="nav-link" href="/auth/signup">SignUp</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/auth/login">LogIn</a>
-            </li> --}}
-            <a class="dropdown-item" href="/auth/login">Login</a>
-            <a class="dropdown-item" href="/auth/signup">SignUp </a>
+    <ul class="nav nav-pills justify-content-between">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">
+          <span class="fa fa-home img-home"></span>
+        
+        </a>
+        
+      </li>
 
-            {{/if}}
-        </li>
-      </ul>
+      <li class="greeting">
+          {{#if user}}
+          <p>Hola, {{user.username}}</p>
+          {{/if}}
+      </li>
+      <li class="nav-item dropdown text-color">
+        <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+        <div class="dropdown-menu">
+          {{#if user}}
+          <a class="dropdown-item" href="/auth/logout">Logout</a>
+          {{else}}
+          <a class="dropdown-item" href="/auth/login">Login</a>
+          <a class="dropdown-item" href="/auth/signup">SignUp </a>
+
+          {{/if}}
+      </li>
+    </ul>
   </nav>
-  <hr>
 
-    
- 
-  {{{body}}}
+  <hr> {{{body}}}
 
 </body>
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -62,6 +58,3 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </html>
-
-
-

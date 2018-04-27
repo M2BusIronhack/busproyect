@@ -1,46 +1,21 @@
-{{!-- <form action="/profile/{{user._id}}/edit" method="post" enctype="multipart/form-data">
-
-    <label for="">Name:</label>
-    <input type="text" name="username" placeholder="" value="{{user.username}}">
-
-
-    <label for=" ">Email:</label>
-    <input type="text" name="email" value="{{user.email}}">
-
-
-    <input type="file" name="photo">
-    <button type="submit" class="btn btn-light btn-margin btn-text-color">EDIT</button>
-
-</form>
-
-
-
-<button type="button" class="btn btn-light btn-margin btn-text-color">
-    <a href="/profile/">Back your profile</a>
-</button> --}}
-
 <div class="container text-center">
     <h2>Edita tu perfil</h2>
     <form action="/profile/{{user._id}}/edit" method="post" enctype="multipart/form-data">
     <div class="container spaced-row text-color">
 
         <div class="form-group text-left">
-            <label for="exampleInputEmail1" class="justify-content-start">Nombre</label>
-            <input type="name" class="form-control" id="exampleInputEmail1" name="username" placeholder="Modificar nombre">
+            <label for="username" class="justify-content-start">Nombre</label>
+            <input type="text" class="form-control" id="name" name="username" value="{{user.username}}" placeholder="{{user.username}}">
         </div>
         <div class="form-group text-left">
-            <label for="exampleInputEmail1">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" placeholder="Introducir email">
-        </div>
-        <div class="form-group text-left">
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" aria-describedby="emailHelp" placeholder="{{user.email}}">
         </div>
         <div class="form-group text-left">
             <label for="exampleInputFile">Busca tu foto</label>
             <input type="file" class="form-control-file fondo-color " name="photo" id="exampleInputFile" aria-describedby="fileHelp">
         </div>
-        <button type="submit" class="btn btn-light btn-margin btn-text-color">Confirmar</button>
+        <button type="submit" class="btn btn-light btn-margin btn-text-color black-color">Confirmar</button>
         <button type="button" class="btn btn-light btn-margin btn-text-color">
             <a href="/profile/">Volver</a>
         </button>

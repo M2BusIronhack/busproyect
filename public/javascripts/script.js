@@ -326,8 +326,8 @@ const drawChart = durations => {
       datasets: [
         {
           label: "Variación de tiempo",
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgb(255, 255, 255)",
+          borderColor: "rgb(141, 186, 250)",
           pointBackgroundColor: "#fff",
           pointHoverBackgroundColor: "#55bae7",
           data: durations

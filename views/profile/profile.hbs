@@ -1,21 +1,19 @@
-<div class="container text-center text-color-profile">
+<div class="container text-center text-color-profile profile">
 
     <div class="profile-name">
         <h3>{{user.username}}</h3>
     </div>
 
-    <div class="container text-center text-color-profile">
-        <div class="center">
-            <button type="button" class="btn btn-light btn-margin btn-text-color">
-                <a href="/profile/{{user._id}}/edit">Edit Profile</a>
-            </button>
-        </div>
-        <div class="profile-name">
-            <h3>{{user.username}}</h3>
-        </div>
+    <div class="container text-center text-color-profile ">
 
         <div class="profile-img">
             <img class="rounded-circle img-thumbnail" src="{{user.img}}" />
+        </div>
+
+        <div class="center">
+            <button type="button" class="btn btn-light btn-margin btn-text-color">
+                <a href="/profile/{{user._id}}/edit">Editar perfil</a>
+            </button>
         </div>
 
         <div class="container">
@@ -25,12 +23,15 @@
                     <i>Mis líneas favoritas</i>
                 </div>
                 <div class="card-body text-info">
-                    {{#each favLines}}
-
-                    <p class="card-text text-left line-space">
-                        <a href="/line/{{this.line}}">Linea {{this.line}}</a>
-                    </p>
-                    {{/each}}
+                    <ul>
+                        {{#each favLines}}
+                        <li>
+                            <p class="card-text text-left line-space">
+                                <a href="/line/{{this.line}}">Linea {{this.line}}</a>
+                            </p>
+                        </li>
+                        {{/each}}
+                    </ul>
                 </div>
             </div>
             {{else}}
@@ -44,7 +45,7 @@
             {{#if comments}}
             <div class="card border-secondary mb-3">
                 <div class="card-header color-comment">
-                    <i>Tus comentarios</i>
+                    <i>Mis comentarios</i>
                 </div>
                 <div class="card-body text-secondary">
                     {{#each comments}}
@@ -57,14 +58,12 @@
                         <i class="fa fa-trash" style="font-size:24px"></i>
                     </a>
                     <hr> {{/each}}
-
                 </div>
             </div>
         </div>
         {{else}}
-        <i> No has dejado ningún comentario.</i>
+        <div>
+            <i> No has dejado ningún comentario.</i>
+        </div>
         {{/if}}
-
-
-
     </div>

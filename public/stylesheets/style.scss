@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700");
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; // background-color: #8FB8FF;
   // background-color: #FF6B63
@@ -40,10 +41,10 @@ a {
 }
 
 .header {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .mv-img {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .btn-margin {
@@ -136,7 +137,7 @@ a {
 }
 
 .dropdown-toggle {
-  padding-top: 20px;
+  padding-top: 30%;
   color: #fff !important;
   background-color: #507694 !important;
 }
@@ -181,9 +182,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-.space-btn {
-  margin: 35px 0 25px 0;
-}
 .fondo-color {
   background-color: #fff;
   border-radius: 15px;
@@ -200,7 +198,7 @@ h2 {
   text-decoration: none;
 }
 .space-btn {
-  margin: 35px 0 25px 0;
+  margin: 20px 0 20px 0;
 }
 
 .center {
@@ -210,4 +208,59 @@ h2 {
 .gm-style-iw {
   width: 40px;
   height: 100px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.img-bus-width {
+  width: 100px;
+  margin-top: 0px;
+}
+
+.grey-botton {
+  background-color: rgb(220, 220, 220);
+  border-color: rgb(220, 220, 220);
+}
+
+.color-white {
+  color: white;
+}
+
+.gm-style-mtc {
+  display: none;
+}
+
+#slogan {
+  color: white;
+  text-align: center;
+}
+
+#app-name {
+  color: white;
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 700;
+  font-size: 3em;
+  text-align: center;
+}
+
+.greeting {
+  width: 150px;
+  color: white;
+  padding-top: 8%;
+  text-align: center;
+}
+
+li {
+  display: table;
+  margin: 0px auto 0px auto;
+}
+
+.profile {
+  margin-top: -30px;
+}
+
+.black-color {
+  color: black;
 }

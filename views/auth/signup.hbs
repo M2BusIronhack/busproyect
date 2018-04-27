@@ -1,37 +1,30 @@
 <!-- views/auth/signup.hbs -->
 <div class="container text-center">
 
-  <img src="/images/bus.svg" alt="icons-bus" class="img-bus" width=130>
+  <img src="/images/bus.svg" alt="icons-bus" class="img-bus img-bus-width" >
 
-  <h2>Registrate</h2>
+  <h2>Registro</h2>
 
   <form action="/auth/signup" method="POST" id="form-container">
-
     <div class="form-group">
-      <label for="username" class="color-text">Nombre</label>
-      <br>
-      <input type="username" class="form-control-sm" id="username" name="username" aria-describedby="emailHelp" placeholder="Nombre">
+
+      <input type="username" class="form-control-sm" id="username" name="username" aria-describedby="emailHelp" placeholder="Introduce tu nombre">
     </div>
 
     <div class="form-group">
-      <label for="exampleInputEmail1" class="color-text">Email</label>
-      <br>
-      <input type="email" class="form-control-sm" id="email" name="email" aria-describedby="emailHelp" placeholder="Introducir email">
+
+      <input type="email" class="form-control-sm" id="email" name="email" aria-describedby="emailHelp" placeholder="Introduce tu email">
     </div>
 
     <div class="form-group">
-      <label for="exampleInputPassword1" class="color-text">Contraseña</label>
-      <br>
-      <input type="password" name="password" class="form-control-sm" id="password" placeholder="Contraseña">
+      <input type="password" name="password" class="form-control-sm" id="password" placeholder="Elige tu contraseña">
     </div>
 
-    <button type="submit" class="btn btn-info space-btn border border-info">Registrate</button>
+    <button type="submit" class="btn btn-info space-btn border border-info">Regístrate</button>
 
     <p class="account-message space-form color-text">
-      Si ya tienes cuenta, por favor, pulsa el botón para entrar.
+      ¿Ya tienes una cuenta?
     </p>
     <a class="btn btn-info out-line" href="/auth/login" role="button">Entrar</a>
 
   </form>
-
-
