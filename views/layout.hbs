@@ -18,15 +18,17 @@
       <li class="nav-item">
         <a class="nav-link active" href="/">
           <span class="fa fa-home img-home"></span>
-        
+
         </a>
-        
+
       </li>
 
       <li class="greeting">
-          {{#if user}}
+        {{#if user}}
+        <a href="/profile" class="color-text">
           <p>Hola, {{user.username}}</p>
-          {{/if}}
+        </a>
+        {{/if}}
       </li>
       <li class="nav-item dropdown text-color">
         <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>

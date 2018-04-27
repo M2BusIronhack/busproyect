@@ -119,13 +119,7 @@ const getListLines = (url, params) => {
                 )
               );
               Promise.all(timeRoutePromises).then(timeInfo => {
-                //    console.log("promesas=> " + timeInfo);
-
                 drawChart(averageTimes);
-                //     let total = averageTimes.reduce((total, num) => {
-                //       return total + num;
-                //     });
-                // //    console.log(total / averageTimes.length);
               });
             });
             // infoLines.appendChild(showTime);
